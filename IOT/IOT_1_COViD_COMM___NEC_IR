@@ -1,0 +1,12 @@
+### IOT Challenge 1 - CoVid's Communication
+
+__Problem given:__ We have been given a .logicdata form and are tasked to get the flag
+
+Using salae's Logic 1.2.8, we visualize the capture data. Looking at the data's signature 9ms pulse burst followed by 4.5ms of space, we conclude that this is NEC IR protocol ( - also in line with the hint "light" ). Following which, the first 8bit are the address and 8bit address inverse, then 8 bit command and 8bit command inverse (with a final 562 microseconds burst). 
+
+Checking the address, 0x00 and 0x11 (the inverse), this part is valid
+Cheking the command, we found that the 8-bit of the inverse portion wasn't the inverse of the command portion's 8 bit. Decoding as ascii, the bit gives 'g'. 
+
+This gives us a hint that the 16 bit command portion has been misused for covert communication. Decoding the first 4 packet yields "govt", affirming that we are on the right track. 
+
+Final flag is govtech-csg{InfraRed_2020_CTF!@} 
